@@ -1,0 +1,520 @@
+
+.calculation-block {
+    display: none;
+    width: 650px;
+    z-index: 400;
+    padding: 0;
+    background-color: #252830;
+    box-shadow: 36px 36px 76px 0px rgba(0, 0, 0, 0.26), 36px 36px 136px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 36px 36px 76px 0px rgba(0, 0, 0, 0.26), 36px 36px 136px 0px rgba(0, 0, 0, 0.5);
+    -o-box-shadow: 36px 36px 76px 0px rgba(0, 0, 0, 0.26), 36px 36px 136px 0px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 36px 36px 76px 0px rgba(0, 0, 0, 0.26), 36px 36px 136px 0px rgba(0, 0, 0, 0.5);
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.panel-header {
+    border: none;
+    background: #1e2127;
+    color: #ffffff;
+    padding: 15px 25px;
+}
+
+.location-name {
+    font-weight: bold;
+}
+
+.header-action-block {
+    float: right;
+    font-size: 15px;
+}
+
+.add-to-favorites, .close-panel {
+    transition: .25s color ease;
+    color: #c4c7d0;
+}
+
+.add-to-favorites:hover, .close-panel:hover {
+    transition: .25s color ease;
+    color: #1bc98e;
+    cursor: pointer;
+}
+
+.close-panel {
+    font-size: 19px;
+    margin-left: 10px;
+}
+
+.panel-body {
+    padding: 15px 25px;
+}
+
+.location-lat-lng {
+    padding-bottom: 10px;
+    color: #c4c7d0;
+}
+
+.wi-lng {
+    margin-left: 20px;
+}
+
+.nav-tabs.nav-justified > li > a {
+    border-bottom: 1px solid #434857;
+    color: #1bc98e;
+}
+
+.nav-tabs.nav-justified > li > a:hover,
+.nav-tabs.nav-justified > li > a:focus {
+    background-color: #434857;
+    color: white;
+    border: 1px solid #434857;
+}
+
+.nav-tabs.nav-justified > .active > a,
+.nav-tabs.nav-justified > .active > a:focus,
+.nav-tabs.nav-justified > .active > a:hover {
+    color: white;
+    background-color: #252830;
+    border: 1px solid #434857;
+    border-bottom: none;
+}
+
+.reloading-info-block {
+    width: 100%;
+}
+
+.weather-block {
+    padding: 15px 0;
+    color: #c4c7d0;
+    position: relative;
+    border-bottom: 1px solid #434857;
+}
+
+.temperature, .other-info {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.other-info {
+    padding-top: 10px;
+}
+
+.other-indicators div {
+    display: inline-block;
+}
+
+.oi-row {
+    margin-right: 40px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.humidity-string, .pressure-string {
+    /*color: #434857;*/
+    font-size: 18px;
+}
+
+.humidity-value, .pressure-value {
+    font-size: 50px;
+}
+
+.temperature {
+    padding-top: 10px;
+    font-size: 60px;
+    text-align: right;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.max-temperature {
+    color: white;
+}
+
+.min-temperature {
+    color: #434857;
+    position: relative;
+    top: -20px;
+}
+
+.date-string {
+    color: #434857;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+
+.fish-activity-block {
+    position: relative;
+}
+
+.total-fish-activity {
+    background-color: #1e2127;
+}
+
+#total-fish-activity {
+    font-size: 60px;
+    color: #1bc98e;
+}
+
+.activity-units {
+    font-size: 24px;
+    color: #c4c7d0;
+}
+
+.hourly-weather-block {
+    float: right;
+}
+
+.total-fish-activity {
+    margin-top: 20px;
+    padding: 10px 0 0 10px;
+    width: 20%;
+}
+
+.heading-string {
+    font-size: 24px;
+    font-weight: bold;
+    color: #434857;
+}
+
+.precipitation {
+    float: right;
+    margin-right: 20px;
+    border-top: 1px solid #c4c7d0;
+    padding-top: 5px;
+}
+
+.day-time {
+    display: inline-block;
+    color: #c4c7d0;
+    text-align: center;
+    width: 100px;
+}
+
+.day-time > i {
+    padding: 15px 0;
+    font-size: 36px;
+    color: white;
+}
+
+.activity-forecast-heading {
+    position: relative;
+}
+
+.heading-content {
+    font-size: 12px;
+    color: #c4c7d0;
+    margin: 0 auto;
+    width: 30%;
+    text-align: center;
+}
+
+.heading-content:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 11px;
+    border-bottom: 1px solid #434857;
+    width: 39%;
+}
+
+.heading-content:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 11px;
+    border-bottom: 1px solid #434857;
+    width: 39%;
+}
+
+.detailed-forecast-block {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.wi-choose-fish {
+    background-color: #252830;
+    color: #1bc98e;
+    border: 1px solid #434857;
+    width: 45%;
+    padding: 10px 15px 10px 10px;
+    text-align: start;
+    display: inline-block;
+    transition: .25s all ease;
+    cursor: pointer;
+}
+
+.wi-choose-fish:hover {
+    background-color: #434857;
+}
+
+.wi-choose-fish > img {
+    float: left;
+    height: 20px;
+}
+
+.wi-choose-fish > span {
+    padding-left: 10px;
+}
+
+.wi-choose-fish > i {
+    float: right;
+}
+
+.wi-fish-list {
+    position: absolute;
+    background-color: #434857;
+    bottom: 45px;
+    left: 0;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.wi-fish-list > div {
+    width: inherit;
+    padding: 10px 15px 10px 10px;
+    transition: .25s all ease;
+    text-align: start;
+    color: #1bc98e;
+    display: block;
+}
+
+.wi-fish-list > div:hover {
+    background-color: #999999;
+}
+
+.wi-fish-list > div > img {
+    float: left;
+    height: 20px;
+}
+
+.wi-fish-list > div > span {
+    padding-left: 10px;
+}
+
+.detailed-forecast {
+    float: right;
+    margin-right: 20px;
+}
+
+.detailed-forecast-element {
+    display: inline-block;
+    width: 100px;
+}
+
+.circle-border {
+    margin: 0 auto;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    background-color: #434857;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    padding: 2px 0;
+}
+
+.panel-footer {
+    border: none;
+    background: #1e2127;
+    color: #c4c7d0;
+    padding: 10px 25px;
+}
+
+.panel-footer > a, .panel-footer > a:link, .panel-footer > a:visited {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: .25s color ease;
+}
+
+.panel-footer > a:hover {
+    text-decoration: none;
+    color: #1bc98e;
+}
+
+/*=========================================================*/
+
+.panel {
+    margin: 0;
+}
+
+.wi-lg-white {
+    font-size: 25px;
+    color: white;
+}
+
+.wi-lg-dark {
+    font-size: 25px;
+    color: #434857;
+}
+
+.wi-xlg-white {
+    font-size: 40px;
+    color: white;
+}
+
+.wi-xlg-dark {
+    font-size: 40px;
+    color: #434857;
+}
+
+.wi-mid-white {
+    font-size: 17px;
+    color: white;
+}
+
+.wi-mid-light {
+    font-size: 17px;
+    color: #c4c7d0;
+}
+
+.wi-mid-dark {
+    font-size: 17px;
+    color: #434857;
+    font-weight: bold;
+}
+
+.wi-sm-light {
+    font-size: 12px;
+    color: #c4c7d0;
+}
+
+.wi-sm-white {
+    font-size: 12px;
+    color: white;
+}
+
+.wi-sm-dark {
+    font-size: 12px;
+    color: #434857;
+    font-weight: bold;
+}
+
+.wi-lg-white, .wi-lg-dark, .wi-mid-white, .wi-mid-dark, .wi-sm-light, .wi-sm-dark, .wi-mid-darkest {
+    transition: .25s all ease;
+}
+
+.wi-blue {
+    color: #1ca8dd;
+}
+
+.wi-green {
+    color: #1bc98e;
+}
+
+.wi-blue-hover:hover {
+    color: #1ca8dd;
+}
+
+.wi-green-hover:hover {
+    color: #1bc98e;
+}
+
+.wi-left {
+    float: left;
+}
+
+.wi-right {
+    float: right;
+}
+
+.wi-content-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wi-content-justify {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.wi-inline-content > div {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.wi-additional-info div:not(:first-child) {
+    margin-left: 35px;
+}
+
+.wi-space div:not(:first-child) {
+    margin-left: 10px;
+}
+
+.wi-date-string {
+    margin: 10px 0 15px 0;
+}
+
+#wi-date-string {
+    padding-bottom: 7px;
+    border-bottom: 1px solid #c4c7d0;
+}
+
+.wi-night-temperature {
+    position: relative;
+    top: -10px;
+}
+
+.wi-heading-line {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.wi-heading-line:after, .wi-heading-line:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 11px;
+    width: 25%;
+    border-bottom: 1px solid #434857;
+}
+
+.wi-heading-line:before {
+    left: 0;
+}
+
+.wi-h3-block > div {
+    position: relative;
+    margin: 0 auto;
+}
+
+.wi-h3-heading > div {
+    text-align: center;
+    margin: 0 auto;
+    width: 100px;
+}
+
+.wi-h3-heading > div:before, .wi-h3-heading > div:after {
+    width: 42%;
+}
+
+.chart-container {
+    width: 100%;
+}
+
+.chart-container > canvas {
+    vertical-align: top;
+}
+
+.wi-total-ratio-block {
+    margin-left: 10px;
+    background-color: inherit;
+    padding: 3px 10px;
+    border: 1px solid #434857;
+}
+
+#moon-canvas {
+    margin-bottom: 5px;
+}
