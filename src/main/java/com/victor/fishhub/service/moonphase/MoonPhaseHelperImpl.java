@@ -31,9 +31,33 @@ class MoonPhaseHelperImpl implements MoonPhaseHelper {
     }
 
     private String getPhaseName(double day){
-        if(day < 2){
+        if(day < 1.2){
             return "New moon";
         }
-        return "";
+        if(day < 3){
+            return "Young moon";
+        }
+        if(day < 7){
+            return "Waxing crescent";
+        }
+        if(day < 8){
+            return "First quarter";
+        }
+        if(day < 14.2){
+            return "Waxing gibbous";
+        }
+        if(day < 15.1){
+            return "Full moon";
+        }
+        if(day < 22){
+            return "Waning gibbous";
+        }
+        if(day < 23){
+            return "Third quarter";
+        }
+        if(day < 28){
+            return "Waning crescent";
+        }
+        return "Old moon";
     }
 }
