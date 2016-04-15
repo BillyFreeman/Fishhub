@@ -41,7 +41,6 @@ class FishRatioImpl implements FishRatio {
         String raw = "D" + date + "T" + time;
         Matcher matcher = PATTERN.matcher(raw);
         String key = matcher.replaceAll("");
-        System.out.println(key);
         return key;
     }
 }

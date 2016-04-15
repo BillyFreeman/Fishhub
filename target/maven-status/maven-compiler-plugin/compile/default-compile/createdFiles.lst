@@ -1,10 +1,12 @@
 com\victor\fishhub\dao\entity\DailyWeather$DailyWeatherBuilder.class
 com\victor\fishhub\service\SrviceLayerImpl.class
 com\victor\fishhub\service\weatherapi\rawentity\Time.class
+com\victor\fishhub\service\moonphase\MoonPhase.class
 com\victor\fishhub\controller\AuthController.class
 com\victor\fishhub\dao\entity\converter\ActiveFlagConverter.class
 com\victor\fishhub\dao\entity\DailyWeather.class
 com\victor\fishhub\service\weatherapi\APIResponseConverter.class
+com\victor\fishhub\service\wind\WindDirectionHelper.class
 com\victor\fishhub\service\weatherapi\APIHelper.class
 com\victor\fishhub\service\weatherapi\rawentity\Clouds.class
 com\victor\fishhub\service\weatherapi\rawentity\Forecast.class
@@ -21,6 +23,7 @@ com\victor\fishhub\dao\entity\H3PeriodWeather.class
 com\victor\fishhub\service\sheduler\SheduledActionImpl.class
 com\victor\fishhub\dao\FishhubDao.class
 com\victor\fishhub\service\ServiceLayer.class
+com\victor\fishhub\service\moonphase\MoonPhaseHelper.class
 com\victor\fishhub\service\weatherapi\APIHelperImpl.class
 com\victor\fishhub\service\weatherapi\rawentity\WindSpeed.class
 com\victor\fishhub\dao\entity\Fish.class
@@ -29,8 +32,10 @@ com\victor\fishhub\dao\FishhubDaoHibernateImpl.class
 com\victor\fishhub\service\weatherapi\APIResponseConverterImpl.class
 com\victor\fishhub\service\weatherapi\rawentity\Symbol.class
 com\victor\fishhub\service\weatherapi\rawentity\adapter\FloatToIntegerAdapter.class
+com\victor\fishhub\service\wind\WindDirectionHelperImpl.class
 com\victor\fishhub\service\ratioalgo\FishRatioImpl.class
 com\victor\fishhub\controller\ViewsController.class
+com\victor\fishhub\service\moonphase\MoonPhaseHelperImpl.class
 com\victor\fishhub\dao\entity\converter\DoubleToStringConverter.class
 com\victor\fishhub\service\sheduler\SheduledAction.class
 com\victor\fishhub\service\weatherapi\rawentity\Humidity.class

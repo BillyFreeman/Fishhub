@@ -19,11 +19,11 @@ class SrviceLayerImpl implements ServiceLayer {
 
     @Autowired
     @Qualifier("hibernateDao")
-    FishhubDao dao;
+    private FishhubDao dao;
 
     @Autowired
     @Qualifier("fishRatio")
-    FishRatio fishRatio;
+    private FishRatio fishRatio;
 
     @Override
     public Location getLocation(int id) {

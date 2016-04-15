@@ -39,9 +39,9 @@ $(document).ready(function () {
 });
 
 
-var activateFirstTab = function() {
+var activateFirstTab = function () {
     var tabs = $(".location-info-block > ul > li");
-    if(!tabs.first().hasClass("active")){
+    if (!tabs.first().hasClass("active")) {
         tabs.removeClass("active");
         tabs.first().addClass("active");
     }
@@ -93,3 +93,6 @@ var initHiddenFishes = function () {
     }
 };
 
+var getLocationInfo = function (id) {
+    alert(id);
+};

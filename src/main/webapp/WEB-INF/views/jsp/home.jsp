@@ -12,10 +12,6 @@
         <title>Fishhub</title>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="resources/css/weather-icons.css">
-        <link rel="stylesheet" href="resources/css/weather-icons.min.css">
-        <link rel="stylesheet" href="resources/css/weather-icons-wind.css">
-        <link rel="stylesheet" href="resources/css/weather-icons-wind.min.css">
         <link rel="stylesheet" href="resources/css/map.css">
         <link rel="stylesheet" href="resources/css/mainpanel.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
