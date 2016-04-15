@@ -7,9 +7,12 @@ package com.victor.fishhub.service.weatherapi;
 
 import com.victor.fishhub.dao.entity.DailyWeather;
 import com.victor.fishhub.dao.entity.H3PeriodWeather;
+import com.victor.fishhub.service.moonphase.MoonPhase;
+import com.victor.fishhub.service.moonphase.MoonPhaseHelper;
 import com.victor.fishhub.service.weatherapi.exception.WeatherDataFormatException;
 import com.victor.fishhub.service.weatherapi.rawentity.Time;
 import com.victor.fishhub.service.weatherapi.rawentity.WeatherData;
+import com.victor.fishhub.service.wind.WindDirectionHelper;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
@@ -30,7 +33,15 @@ class APIResponseConverterImpl implements APIResponseConverter {
     
     @Autowired
     @Qualifier("allProps")
-    PropertiesFactoryBean propsFactory;
+    private PropertiesFactoryBean propsFactory;
+    
+    @Autowired
+    @Qualifier("simpleMoonHelper")
+    private MoonPhaseHelper moonHelper;
+    
+    @Autowired
+    @Qualifier("simpleWindHelper")
+    private WindDirectionHelper windHelper;
 
     private final static String DATE_PATTERN = "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$";
     private final static String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
@@ -76,6 +87,7 @@ class APIResponseConverterImpl implements APIResponseConverter {
         List<H3PeriodWeather> h3List = new ArrayList<>();
         for (Time t : data.getForecast().getTime()) {
             H3PeriodWeather hpw = new H3PeriodWeather();
+            
             hpw.setForecastDate(getForecastDate(t.getTo()));
             hpw.setForecastTime(getForecastTime(t.getTo()));
             hpw.setTemperature(getCelsiusTemperature(t.getTemperature().getValue()));
@@ -84,7 +96,11 @@ class APIResponseConverterImpl implements APIResponseConverter {
             hpw.setPressure(t.getPressure().getValue());
             hpw.setHumidity(t.getHumidity().getValue());
             hpw.setWindSpeed((int) t.getWindSpeed().getSpeed());
-            hpw.setWindDirection((int) t.getWindDirrection().getDegree());
+            
+            int dir = (int) t.getWindDirrection().getDegree();
+            hpw.setWindDirection(dir);
+            hpw.setWindName(windHelper.getWindName(dir));
+            
             h3List.add(hpw);
         }
         return h3List;
@@ -109,16 +125,21 @@ class APIResponseConverterImpl implements APIResponseConverter {
         hum /= periods.size();
         press /= periods.size();
 
+        Date forecastDate = periods.get(4).getForecastDate();
+        MoonPhase phase = moonHelper.getPhase(forecastDate);
+        
         weather.setForecastDate(periods.get(4).getForecastDate());
         weather.setMinTemperature(min);
         weather.setMaxTemperature(max);
         weather.setHumidity(hum);
         weather.setPressure(press);
-        weather.setWindSpeed(periods.get(4).getWindSpeed());
-        weather.setWindDirection(periods.get(4).getWindDirection());
-        weather.setMoonPhase(moonPhasePercent);
+        weather.setMoonPhase(phase.getDay());
+        weather.setMoonPhaseName(phase.getName());
         weather.setH3WeatherList(periods);
 
+        phase = null;
+        forecastDate = null;
+        
         return weather;
     }
 

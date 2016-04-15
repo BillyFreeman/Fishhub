@@ -54,6 +54,8 @@ public class H3PeriodWeather implements Serializable {
     private Integer windSpeed;
     @Column(name = "h3_wind_direction")
     private Integer windDirection;
+    @Column(name = "h3_wind_name")
+    private String windName;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "daily_id", nullable = false)
     @XmlTransient
@@ -66,14 +68,15 @@ public class H3PeriodWeather implements Serializable {
     public H3PeriodWeather(
             Date forecastDate,
             Time forecastTime,
-            Integer temperature, 
-            String weatherType, 
-            String weatherCode, 
-            Integer pressure, 
-            Integer humidity, 
+            Integer temperature,
+            String weatherType,
+            String weatherCode,
+            Integer pressure,
+            Integer humidity,
             DailyWeather dailyWeather,
             Integer windSpeed,
-            Integer windDirection
+            Integer windDirection,
+            String windName
     ) {
         this.forecastDate = forecastDate;
         this.forecastTime = forecastTime;
@@ -85,6 +88,7 @@ public class H3PeriodWeather implements Serializable {
         this.dailyWeather = dailyWeather;
         this.windSpeed = windSpeed;
         this.windDirection = windDirection;
+        this.windName = windName;
     }
 
     public Integer getId() {
@@ -175,6 +179,14 @@ public class H3PeriodWeather implements Serializable {
         this.windDirection = windDirection;
     }
 
+    public String getWindName() {
+        return windName;
+    }
+
+    public void setWindName(String windName) {
+        this.windName = windName;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -210,7 +222,8 @@ public class H3PeriodWeather implements Serializable {
                 .append("weatherType: ").append(this.weatherType).append("\n\t")
                 .append("weatherCode: ").append(this.weatherCode).append("\n\t")
                 .append("windSpeed: ").append(this.windSpeed).append("\n\t")
-                .append("windDirection: ").append(this.windDirection).append("\n");     
+                .append("windDirection: ").append(this.windDirection).append("\n\t")
+                .append("windName: ").append(this.windName).append("\n");
         return builder.toString();
     }
 }

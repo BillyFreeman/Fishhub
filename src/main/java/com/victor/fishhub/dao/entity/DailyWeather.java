@@ -53,12 +53,10 @@ public class DailyWeather implements Serializable {
     private Integer humidity;
     @Column(name = "athm_pressure")
     private Integer pressure;
-    @Column(name = "wind_speed")
-    private Integer windSpeed;
-    @Column(name = "wind_direction")
-    private Integer windDirection;
     @Column(name = "moon_phase")
     private Integer moonPhase;
+    @Column(name = "moon_phase_name")
+    private String moonPhaseName;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id", nullable = false)
     @XmlTransient
@@ -79,9 +77,8 @@ public class DailyWeather implements Serializable {
         private Integer maxTemperature;
         private Integer humidity;
         private Integer pressure;
-        private Integer windSpeed;
-        private Integer windDirection;
         private Integer moonPhase;
+        private String moonPhaseName;
         private Location location;
         private List<H3PeriodWeather> h3WeatherList;
 
@@ -118,18 +115,13 @@ public class DailyWeather implements Serializable {
             return this;
         }
 
-        public DailyWeatherBuilder setWindSpeed(Integer windSpeed) {
-            this.windSpeed = windSpeed;
-            return this;
-        }
-
-        public DailyWeatherBuilder setWindDirection(Integer windDirection) {
-            this.windDirection = windDirection;
-            return this;
-        }
-
         public DailyWeatherBuilder setMoonPhase(Integer moonPhase) {
             this.moonPhase = moonPhase;
+            return this;
+        }
+
+        public DailyWeatherBuilder setMoonPhaseName(String moonPhaseName) {
+            this.moonPhaseName = moonPhaseName;
             return this;
         }
 
@@ -151,9 +143,8 @@ public class DailyWeather implements Serializable {
             weather.maxTemperature = maxTemperature;
             weather.humidity = humidity;
             weather.pressure = pressure;
-            weather.windSpeed = windSpeed;
-            weather.windDirection = windDirection;
             weather.moonPhase = moonPhase;
+            weather.moonPhaseName = moonPhaseName;
             weather.location = location;
             weather.h3WeatherList = h3WeatherList;
             return weather;
@@ -216,28 +207,20 @@ public class DailyWeather implements Serializable {
         this.pressure = pressure;
     }
 
-    public Integer getWindSpeed() {
-        return windSpeed;
-    }
-
-    public void setWindSpeed(Integer windSpeed) {
-        this.windSpeed = windSpeed;
-    }
-
-    public Integer getWindDirection() {
-        return windDirection;
-    }
-
-    public void setWindDirection(Integer windDirection) {
-        this.windDirection = windDirection;
-    }
-
     public Integer getMoonPhase() {
         return moonPhase;
     }
 
     public void setMoonPhase(Integer moonPhase) {
         this.moonPhase = moonPhase;
+    }
+
+    public String getMoonPhaseName() {
+        return moonPhaseName;
+    }
+
+    public void setMoonPhaseName(String moonPhaseName) {
+        this.moonPhaseName = moonPhaseName;
     }
 
     public Location getLocation() {
@@ -289,10 +272,9 @@ public class DailyWeather implements Serializable {
                 .append("maxTemperature: ").append(this.maxTemperature).append("\n\t")
                 .append("pressure: ").append(this.pressure).append("\n\t")
                 .append("humidity: ").append(this.humidity).append("\n\t")
-                .append("windSpeed: ").append(this.windSpeed).append("\n\t")
-                .append("windDirection: ").append(this.windDirection).append("\n\t")
-                .append("moonPhase: ").append(this.moonPhase).append("\n");
-        for(H3PeriodWeather h3: h3WeatherList){
+                .append("moonPhase: ").append(this.moonPhase).append("\n\t")
+                .append("moonPhaseName: ").append(this.moonPhaseName).append("\n");
+        for (H3PeriodWeather h3 : h3WeatherList) {
             builder.append(h3.toString()).append("\n");
         }
         return builder.toString();
