@@ -48,7 +48,7 @@ var getContentString = function (heading, lat, lng, id) {
             "</div>" +
             "<div id='marker-info-lng-value' class='marker-info-value'>" + lng + "</div>" +
             "<div id='marker-info-button'>" +
-            "<button onclick='getLocationInfo(" + id + ")' class='btn btn-lg'>Details</button>" +
+            "<button onclick='showLocationInfo(" + id + ")' class='btn btn-md'>Details</button>" +
             "</div>" +
             "</div>";
     return infoString;

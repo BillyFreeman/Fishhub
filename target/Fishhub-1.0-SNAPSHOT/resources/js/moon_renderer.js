@@ -11,7 +11,6 @@ var MoonPhase = function (context, args) {
             mPh.ctx.drawImage(this, 0, 0, moonCanvasWidth, moonCanvasWidth);
         };
         img.src = this.args.src;
-
         $("#wi-moon-phase-title").html(this.args.title);
     };
 };
@@ -26,7 +25,7 @@ var MoonPhaseList = function () {
 
         for (var i = 0; i < e.length; i++) {
 
-            var args = new MoonPhaseArgs("Waning gibbous");
+            var args = new MoonPhaseArgs(e[i].moonPhaseName);
             moonContext.fillStyle = "rgba(0, 0, 0, 0.5)";
             var moonPhase = new MoonPhase(moonContext, args);
             this.array.push(moonPhase);
@@ -42,7 +41,7 @@ var MoonPhaseList = function () {
 
 
 var MoonPhaseArgs = function (title) {
-    var imgPath = "/FishMap/images/moon/";
+    var imgPath = "http://localhost:8080/Fishhub/resources/images/moon/";
     this.title = title;
     switch (title) {
         case "New moon":
@@ -51,7 +50,7 @@ var MoonPhaseArgs = function (title) {
         case "Young moon":
             this.src = imgPath + "fh_young.png";
             break;
-        case "waxing crescent":
+        case "Waxing crescent":
             this.src = imgPath + "fh_wxc.png";
             break;
         case "First quarter":

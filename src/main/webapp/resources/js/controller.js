@@ -1,16 +1,4 @@
 $(document).ready(function () {
-    $(".floating-button-add").click(function () {
-        $('.to-blur').toggleClass('is-blurred');
-        $(".faded-background").fadeIn({
-            duration: 250, start: function () {
-                $(".calculation-block").slideDown({duration: 100});
-                setFishListPos();
-                render(unit);
-                initFishListDOM(fishRatioList);
-            }
-        });
-    });
-
     $(".close-panel").click(function () {
         $('.to-blur').toggleClass('is-blurred');
         $(".faded-background").fadeOut({
@@ -19,6 +7,7 @@ $(document).ready(function () {
             }
         });
         activateFirstTab();
+        currentFishId = -1;
     });
 
     $("#wi-choose-fish").click(function () {
@@ -77,7 +66,7 @@ var initFishListDOM = function (list) {
 };
 
 var initCurrentFishEement = function (fish) {
-    var tags = "<img src='images" + fish.img + "'><span class='fish-name'>" + fish.name + "</span><i class='fa fa-chevron-up'></i>";
+    var tags = "<img src='http://localhost:8080/Fishhub/resources/images" + fish.img + "'><span class='fish-name'>" + fish.name + "</span><i class='fa fa-chevron-up'></i>";
     $("#wi-choose-fish").html(tags);
 };
 
@@ -87,12 +76,23 @@ var initHiddenFishes = function () {
     for (var i = 0; i < fishRatioList.array.length; i++) {
         var e = fishRatioList.array[i];
         if (e.id != currentFishId) {
-            var tags = "<div onclick='selectFish(" + e.id + ")'><img src='images/" + e.img + "'><span class='fish-name'>" + e.name + "</span></div>";
+            var tags = "<div onclick='selectFish(" + e.id + ")'><img src='http://localhost:8080/Fishhub/resources/images/" + e.img + "'><span class='fish-name'>" + e.name + "</span></div>";
             container.append(tags);
         }
     }
 };
 
-var getLocationInfo = function (id) {
-    alert(id);
+var showLocationInfo = function (id) {
+    $('.to-blur').toggleClass('is-blurred');
+    $(".faded-background").fadeIn({
+        duration: 250, start: function () {
+            var url = "api/location/" + id + ".json";
+            $.getJSON(url, {}, function (json) {
+                $(".calculation-block").slideDown({duration: 100});
+                setFishListPos();
+                render(json);
+                initFishListDOM(fishRatioList);
+            })
+        }
+    });
 };
