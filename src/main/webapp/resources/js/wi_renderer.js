@@ -439,6 +439,7 @@ var DateObj = function (dateStr) {
     }
 };
 
+//check for buggs
 var formattedDate = function (dateStr) {
     var dObj = new DateObj(dateStr);
     var date = dObj.getCurDate();
