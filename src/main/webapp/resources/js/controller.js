@@ -69,23 +69,9 @@ var showLocationInfo = function (id) {
     });
 };
 
-var initFishListDOM = function (list) {
-    var fish;
-    if (currentFishId > -1) {
-        fish = list.getFish(currentFishId);
-    } else {
-        fish = list.getFirst(); //if there was no previous fish selection, show first fish
-        currentFishId = fish.id;
-    }
-    initCurrentFishEement(fish);
-    initHiddenFishes();
-};
-
 //create fish button content
 var initCurrentFishEement = function (fish) {
-    var tags = "<img src='http://localhost:8080/Fishhub/resources/images" + fish.img +
-            +"'><span class='fish-name'>" + fish.name +
-            +"</span><i class='fa fa-chevron-up'></i>";
+    var tags = "<img src='http://localhost:8080/Fishhub/resources/images" + fish.img + "'><span class='fish-name'>" + fish.name + "</span><i class='fa fa-chevron-up'></i>";
     $("#wi-choose-fish").html(tags);
 };
 
@@ -96,10 +82,20 @@ var initHiddenFishes = function () {
     for (var i = 0; i < fishRatioList.array.length; i++) { //for all fishes
         var e = fishRatioList.array[i];
         if (e.id != currentFishId) { //exclude curently selected fish from list. It was created by initCurrentFish()
-            var tags = "<div onclick='selectFish(" + e.id +
-                    +")'><img src='http://localhost:8080/Fishhub/resources/images/" + e.img +
-                    +"'><span class='fish-name'>" + e.name + "</span></div>";
+            var tags = "<div onclick='selectFish(" + e.id + ")'><img src='http://localhost:8080/Fishhub/resources/images/" + e.img + "'><span class='fish-name'>" + e.name + "</span></div>";
             container.append(tags);
         }
     }
+};
+
+var initFishListDOM = function (list) {
+    var fish;
+    if (currentFishId > -1) {
+        fish = list.getFish(currentFishId);
+    } else {
+        fish = list.getFirst(); //if there was no previous fish selection, show first fish
+        currentFishId = fish.id;
+    }
+    initCurrentFishEement(fish);
+    initHiddenFishes();
 };

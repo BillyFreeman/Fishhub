@@ -57,18 +57,19 @@ public class DailyWeather implements Serializable {
     private Integer moonPhase;
     @Column(name = "moon_phase_name")
     private String moonPhaseName;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY) //related location
     @JoinColumn(name = "location_id", nullable = false)
     @XmlTransient
     @JsonIgnore
     private Location location;
-    @OneToMany(mappedBy = "dailyWeather", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "dailyWeather", fetch = FetchType.LAZY) //datailed (h3) weather table relation
     @Cascade(CascadeType.ALL)
     private List<H3PeriodWeather> h3WeatherList;
 
     public DailyWeather() {
     }
 
+    //because of big amount of fields we use builder pattern instead of constructor with many arguments
     public static class DailyWeatherBuilder {
 
         private Integer dayNumber;

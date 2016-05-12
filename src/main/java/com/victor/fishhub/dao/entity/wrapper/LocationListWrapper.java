@@ -12,6 +12,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+//anotated wrapper for collection of Location objects
 @XmlRootElement(name = "locations")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class LocationListWrapper {

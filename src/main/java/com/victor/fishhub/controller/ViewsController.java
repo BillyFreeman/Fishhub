@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ViewsController {
     
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String goHome(){
+    public String doHome(){
         return "home";
     }
     
     @RequestMapping(value = "/signin", method = RequestMethod.GET)
-    public String signIn(){
+    public String doSignIn(){
         return "signin";
     }
     
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public String signUp(){
+    public String doSignUp(){
         return "signup";
     }
     

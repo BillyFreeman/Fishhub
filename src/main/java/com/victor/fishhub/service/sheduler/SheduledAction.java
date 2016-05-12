@@ -5,8 +5,6 @@
  */
 package com.victor.fishhub.service.sheduler;
 
-import com.victor.fishhub.dao.entity.Location;
-
 
 public interface SheduledAction {
     

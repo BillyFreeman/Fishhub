@@ -111,8 +111,8 @@ class FishhubDaoHibernateImpl implements FishhubDao {
             session = factory.openSession();
             tx = session.beginTransaction();
             location = session.get(Location.class, id);
-            initWeatherList(location.getWeatherList());
-            initFishList(location.getFishlist());
+            initWeatherList(location.getWeatherList()); //initialize lazy fetch
+            initFishList(location.getFishlist()); //initialize lazy fetch
             tx.commit();
         } catch (RuntimeException ex) {
             ex.printStackTrace();
@@ -231,15 +231,16 @@ class FishhubDaoHibernateImpl implements FishhubDao {
         return fishlist;
     }
 
+    //initialize Location table weather relations
     private List<DailyWeather> initWeatherList(List<DailyWeather> weatherList) {
         Hibernate.initialize(weatherList);
-
         for (DailyWeather dw : weatherList) {
             Hibernate.initialize(dw.getH3WeatherList());
         }
         return weatherList;
     }
 
+    //initialize Location table fish relations
     private List<Fish> initFishList(List<Fish> fishlist) {
         Hibernate.initialize(fishlist);
         return fishlist;

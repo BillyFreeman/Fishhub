@@ -64,7 +64,9 @@ public class H3PeriodWeather implements Serializable {
 
     public H3PeriodWeather() {
     }
-
+    
+    
+    //there should be builder pattern instead folowing constructor
     public H3PeriodWeather(
             Date forecastDate,
             Time forecastTime,

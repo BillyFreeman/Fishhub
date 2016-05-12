@@ -155,6 +155,7 @@ var chartInit = function (h3) {
         windElements.push({
             direction: e.windDirection,
             speed: e.windSpeed,
+            value: e.windName,
             x0: xArray[i] - wRad,
             y0: yWindBaseLine - wRad,
             w: wRad * 2,

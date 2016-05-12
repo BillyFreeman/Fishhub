@@ -24,7 +24,7 @@ public class RESTController {
     ServiceLayer service;
 
     @RequestMapping(value = "/api/locations", method = RequestMethod.GET)
-    public LocationListWrapper showAllLocations() {
+    public LocationListWrapper getAllLocations() {
         List<Location> locations = service.getLazyActiveLocations();
         return new LocationListWrapper(locations);
     }

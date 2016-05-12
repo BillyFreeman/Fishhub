@@ -51,13 +51,13 @@ public class Location implements Serializable {
     private Double longtitude;
     @Column(name = "active", nullable = false)
     @NotNull
-    @Convert(converter = ActiveFlagConverter.class)
+    @Convert(converter = ActiveFlagConverter.class) //converts string to boolean
     private Boolean active;
-    @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "location", fetch = FetchType.LAZY) //set weather data relation
     @Cascade(CascadeType.ALL)
     private List<DailyWeather> weatherList;
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "linked_fish_location", 
+    @ManyToMany(fetch = FetchType.LAZY) //set fishlist relation
+    @JoinTable(name = "linked_fish_location",
             joinColumns = {@JoinColumn(name = "place_id", nullable = false, updatable = false)}, 
             inverseJoinColumns = {@JoinColumn(name = "fish_id", nullable = false, updatable = false)})
     @Cascade(CascadeType.PERSIST)

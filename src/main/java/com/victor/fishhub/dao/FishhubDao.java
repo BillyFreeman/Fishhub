@@ -5,12 +5,9 @@ import com.victor.fishhub.dao.entity.Fish;
 import com.victor.fishhub.dao.entity.Location;
 import java.util.List;
 
-/**
- *
- * @author Віктор
- */
 public interface FishhubDao {
 
+    //get active locations list without any ralations initialization
     List<Location> getLazyActiveLocations();
 
     List<Location> getAllLocations();
@@ -29,10 +26,10 @@ public interface FishhubDao {
 
     void deleteLocation(Location location);
 
-    void updateDailyWeatherList(List<DailyWeather> weather);
-
     void deactivateLocation(int id);
     
+    void updateDailyWeatherList(List<DailyWeather> weather);
+
     List<Fish> getDefaultFishlist();
 
 }

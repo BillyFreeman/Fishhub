@@ -45,7 +45,7 @@ public class SheduledActionImpl implements SheduledAction {
     private SimpleDateFormat format;
     private long requestCount;
 
-    private final static int MAX_REQUEST_NUMBER = 9000;
+    private final static int MAX_REQUEST_NUMBER = 9000; //max daily number of requests in free weather api subscription
 
     public SheduledActionImpl() {
         format = new SimpleDateFormat("HH:mm:ss");

@@ -2,8 +2,8 @@ package com.victor.fishhub.service.moonphase;
 
 public class MoonPhase {
 
-    private int day;
-    private String name;
+    private int day; //day of moon cycle
+    private String name; //phase name
 
     public MoonPhase() {
     }
