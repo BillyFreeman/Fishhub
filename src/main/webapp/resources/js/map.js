@@ -13,6 +13,7 @@ function initMap() {
 
     var infoWindow = new google.maps.InfoWindow();
 
+    //request to REST api to get active locations list
     $.getJSON('api/locations.json', {}, function (json) {
         var markers = [];
         $.each(json["locationListWrapper"]["locations"], function (i, val) {
@@ -21,21 +22,22 @@ function initMap() {
             var marker = new google.maps.Marker({
                 position: pos
             });
-//            marker.setTitle(val.name);
             marker.set("id", val.id);
             marker.set("heading", val.title);
             marker.set("lat", val.latitude);
             marker.set("lng", val.longtitude);
             marker.addListener('click', function () {
+                //create markers info window content
                 infoWindow.set("content", getContentString(marker.get("heading"), marker.get("lat"), marker.get("lng"), marker.get("id")));
                 infoWindow.open(map, marker);
             });
             markers.push(marker);
         });
-        var markerCluster = new MarkerClusterer(map, markers);
+        var markerCluster = new MarkerClusterer(map, markers); //create marker clusters from marker array
     });
 }
 
+//create info window DOM elements
 var getContentString = function (heading, lat, lng, id) {
     var infoString = "<div id='marker-info-content'>" +
             "<div id='marker-info-heading'>" + heading + "</div>" +

@@ -77,9 +77,10 @@ var render = function (response) {
 
     canvasWidth = rect.w;
     canvasHeight = rect.h;
-    calculate(1);
+    calculate(1); //start drawing
 };
 
+//init Y levels of all drawable elements (chart, weather, wind) 
 var initYLevels = function (rect) {
     var h = rect.h;
     yChartMax = h * 0.03;
@@ -91,6 +92,7 @@ var initYLevels = function (rect) {
     yWindBaseLine = h * 0.9;
 };
 
+//recalculates all drawable elements according to 'day' argument
 var calculate = function (day) {
     setDOMValues(day);
 
@@ -108,6 +110,7 @@ var calculate = function (day) {
     drawFishRatio();
 };
 
+//calculate X coordinates of h3 elements
 var initXArray = function (number) {
     xArray = [];
 
@@ -119,6 +122,7 @@ var initXArray = function (number) {
     }
 };
 
+//initialize all chart, weather and wind coordinates
 var chartInit = function (h3) {
     var yArray = chartY(h3);
 
@@ -147,6 +151,7 @@ var chartInit = function (h3) {
             h: wRad * 2
         });
 
+        //create wind object and push it to array
         windElements.push({
             direction: e.windDirection,
             speed: e.windSpeed,
@@ -154,6 +159,7 @@ var chartInit = function (h3) {
             y0: yWindBaseLine - wRad,
             w: wRad * 2,
             h: wRad * 2,
+            //v1, v2, v3 - canvas coordinates of wind direction arrow 
             v1: rotateVertex(15, e.windDirection - 20, {
                 x: xArray[i],
                 y: yWindBaseLine
@@ -179,9 +185,9 @@ var chartInit = function (h3) {
             y: yChartMin - (yChartMin - chartElements[chartElements.length - 1].y) / 2
         }
     };
-
 };
 
+//calculate Y coordinate of chart vertexes
 var chartY = function (h3) {
     var min;
     var max = min = h3[0].temperature, base;
@@ -212,8 +218,9 @@ var drawChart = function () {
     context.textAlign = 'left';
     context.fillStyle = mainColor;
 
-    context.fillText(tSymbol, 0, 0);
+    context.fillText(tSymbol, 0, 0); //draw 'C' character
 
+    //draw chart body
     var grd = context.createLinearGradient(0, yWeatherBaseLine, 0, yChartMax);
     grd.addColorStop(0, "rgba(37,40,48,0.1)");
     grd.addColorStop(1, "rgba(196,199,208,0.7)");
@@ -232,8 +239,9 @@ var drawChart = function () {
     context.lineTo(chartVertexes.end.x, yChartXLine);
 
     context.closePath();
-    context.fill();
+    context.fill(); //END draw chart body
 
+    //draw X axis
     context.strokeStyle = mainColor;
     context.lineWidth = 1;
 
@@ -252,17 +260,18 @@ var drawChart = function () {
     }
 
     context.closePath();
-    context.fill();
+    context.fill();//END draw X axis
 
     context.font = "12px Arial";
     context.textBaseline = 'middle';
     context.textAlign = 'center';
 
     for (var i = 0; i < chartElements.length; i++) {
-        context.fillText(chartElements[i].time, chartElements[i].x, yChartTime);
+        context.fillText(chartElements[i].time, chartElements[i].x, yChartTime); //draw time titles on X axis
     }
 };
 
+//draw weather and wind icons
 var drawWeather = function () {
     context.clearRect(0, yChartTime + 10, canvasWidth, canvasHeight);
 
@@ -271,20 +280,20 @@ var drawWeather = function () {
         img.index = i;
         img.rect = weatherElements[i];
         img.onload = function () {
-            context.drawImage(this, this.rect.x0, this.rect.y0, this.rect.w, this.rect.h);
+            context.drawImage(this, this.rect.x0, this.rect.y0, this.rect.w, this.rect.h); //draw img when loading completed
         };
-        img.src = weatherElements[i].src;
+        img.src = weatherElements[i].src; //load img source. When loading completed, img is drawing
     }
-
     context.strokeStyle = themeBlueColor;
     context.lineWidth = 5;
 
     context.beginPath();
-
+    //draw wind icons
     for (var i = 0; i < windElements.length; i++) {
         var e = windElements[i];
         context.moveTo(xArray[i] + 15, yWindBaseLine);
         context.arc(xArray[i], yWindBaseLine, 15, 0, Math.PI * 2);
+        //draw wind direction arrow
         context.moveTo(e.v1.x, e.v1.y);
         context.lineTo(e.v2.x, e.v2.y);
         context.lineTo(e.v3.x, e.v3.y);
@@ -298,6 +307,7 @@ var drawWeather = function () {
     }
 };
 
+
 var drawFishRatio = function () {
     if (currentFishId > -1) {
         fishRatioList.getFish(currentFishId).drawValues()
@@ -306,14 +316,16 @@ var drawFishRatio = function () {
     }
 };
 
+
+//renders when hovering over canvas
 var renderMotion = function (event) {
 
-    var targetY = event.y - canvas.getBoundingClientRect().top;
-    if (targetY < yChartXLine) {
-        drawChart();
+    var targetY = event.y - canvas.getBoundingClientRect().top; //cursor vertical position
+    if (targetY < yChartXLine) { //if cursor is over canvas (above X axis)
+        drawChart(); //draw base canvas state
 
         var targetX = event.x - canvas.getBoundingClientRect().left;
-        var chartElement = getNearestElement(targetX);
+        var chartElement = getNearestElement(targetX); //nearest chart vertex coordinates
         context.strokeStyle = mainColor;
         context.lineWidth = 1;
 
@@ -321,39 +333,39 @@ var renderMotion = function (event) {
         context.moveTo(chartElement.x, yChartXLine);
         context.lineTo(chartElement.x, chartElement.y);
         context.closePath();
-        context.stroke();
+        context.stroke(); //draw vertical line from X axis to nearest chart vertex
 
         context.fillStyle = "rgba(255,255,255,0.3)";
         context.beginPath();
         context.arc(chartElement.x, chartElement.y, 7, 0, Math.PI * 2);
         context.closePath();
-        context.fill();
+        context.fill(); //draw transparent circle in nearest chart vertex
 
         context.fillStyle = "white";
         context.beginPath();
         context.arc(chartElement.x, chartElement.y, 3, 0, Math.PI * 2);
         context.closePath();
-        context.fill();
+        context.fill(); //draw white circle in nearest chart vertex
 
-        var sPos = new SignPosition(chartElement);
-        var i = chartElement.pos;
+        var sPos = new SignPosition(chartElement); //info panel position element
+        var i = chartElement.pos; //nearest vertex index
 
         context.fillStyle = "white";
         context.textBaseline = 'middle';
         context.textAlign = sPos.align;
 
         context.font = "20px Arial";
-        context.fillText(chartElement.value + degSymbol, sPos.x, sPos.tY);
+        context.fillText(chartElement.value + degSymbol, sPos.x, sPos.tY); //draw h3 temperature on info panel
 
         context.font = "14px Arial";
-        context.fillText(weatherElements[i].value, sPos.x, sPos.weValY);
-        context.fillText(windElements[i].value, sPos.x, sPos.wiValY);
-        context.fillText(windElements[i].speed + " m/s", sPos.x, sPos.wiSpeedY);
+        context.fillText(weatherElements[i].value, sPos.x, sPos.weValY); //draw h3 weather string on info panel
+        context.fillText(windElements[i].value, sPos.x, sPos.wiValY); //draw h3 wind name string on info panel
+        context.fillText(windElements[i].speed + " m/s", sPos.x, sPos.wiSpeedY); //draw h3 wind speed on info panel
 
         context.fillStyle = "#1ca8dd";
         context.font = "12px Arial";
-        context.fillText("weather:", sPos.x, sPos.weTitleY);
-        context.fillText("wind:", sPos.x, sPos.wiTitleY);
+        context.fillText("weather:", sPos.x, sPos.weTitleY); //draw 'weather:' string on info panel
+        context.fillText("wind:", sPos.x, sPos.wiTitleY); //draw 'wind:' string on info panel
     }
 };
 
@@ -368,8 +380,9 @@ var canvasBounds = function (canvas) {
     }
 };
 
+//calculate info panel size and cootdinates when hoveting over chart
 var SignPosition = function (element) {
-    this.align = element.pos < chartElements.length / 2 ? 'left' : 'right';
+    this.align = element.pos < chartElements.length / 2 ? 'left' : 'right'; //choose side where info panel will apear
 
     var dx = this.align === 'left' ? 20 : -20;
     var dy = Math.abs(element.y - yChartMax) < 60 ? element.y - yChartMax : 60;
@@ -383,6 +396,7 @@ var SignPosition = function (element) {
     this.wiSpeedY = element.y - dy + 74;
 };
 
+//when hovering over chart detects the closest chart vertex to the cursor
 var getNearestElement = function (targetX) {
     var nearest = chartElements[0];
     for (var i = 1; i < chartElements.length; i++) {
@@ -391,11 +405,13 @@ var getNearestElement = function (targetX) {
     return nearest;
 };
 
+//return time string without seconds characters (for 3h chart X axis)
 var shortTime = function (time) {
     var pattern = "^[0-9]{2}:[0-9]{2}";
     return time.match(pattern);
 };
 
+//rotates vertex on the specified angle and returns it's coordinates
 var rotateVertex = function (radius, angle, center) {
     var a = (360 - angle + 90) > 360 ? 90 - angle : 360 - angle + 90;
     var x1 = center.x + (Math.cos(a * Math.PI / 180) * radius);
@@ -412,40 +428,38 @@ var setHeaderContent = function () {
     $("#wi-lng").html(resp.location.longitude);
 };
 
-var setTabTitles = function () {
-    $("#wi-day-3").html(tabTitles[2]);
-    $("#wi-day-4").html(tabTitles[3]);
-    $("#wi-day-5").html(tabTitles[4]);
-};
-
+//set general weather data (date, pressure, humidity, day/night temperature, moon phase)
 var setDOMValues = function (day) {
-    moonList.getPhase(day - 1).draw();
+    moonList.getPhase(day - 1).draw(); //draw on moon canvas
 
-    var dayElement = resp.location.weatherList[day - 1];
-    $("#wi-date-string").html(formattedDate(resp.location.weatherList[day - 1].forecastDate));
+    var dayElement = resp.location.weatherList[day - 1]; //JSON single day element
+    $("#wi-date-string").html(formattedDate(dayElement.forecastDate));
     $("#wi-i-pressure-value").html(dayElement.pressure);
     $("#wi-i-humidity-value").html(dayElement.humidity);
     $("#wi-day-temperature").html(dayElement.maxTemperature);
     $("#wi-night-temperature").html(dayElement.minTemperature);
 };
 
+//creates Date object from date JSON date string yyyy-MM-dd
 var DateObj = function (dateStr) {
     this.year = dateStr.substring(0, 4);
     this.month = dateStr.substring(6, 7) - 1;
-    this.day = dateStr.substring(9, 10);
+    this.day = dateStr.substring(8, 10);
 
     this.getCurDate = function () {
         return new Date(this.year, this.month, this.day);
     }
 };
 
-//check for buggs
+//creates Weather block heading with curent date string 
 var formattedDate = function (dateStr) {
     var dObj = new DateObj(dateStr);
-    var date = dObj.getCurDate();
-    return dayNames[date.getUTCDay()] + ", " + dObj.day + " " + monthNames[date.getMonth()] + " " + date.getUTCFullYear();
+    var date = dObj.getCurDate(); //for getting curent day and month names
+    var day = dObj.day.substring(0, 1) === '0' ? dObj.day.substring(1, 2) : dObj.day;
+    return dayNames[date.getUTCDay()] + ", " + day + " " + monthNames[date.getMonth()] + " " + dObj.year;
 };
 
+//initialize string array with tab names acording to current date.
 var initTabTitles = function () {
     tabTitles = [];
     var e = resp.location.weatherList;
@@ -455,3 +469,10 @@ var initTabTitles = function () {
     }
 };
 
+//set tab names determined by initTabTitles() function.
+var setTabTitles = function () {
+    //we do not change first and second tab names. Those are 'Today' and 'Tomorrow';) 
+    $("#wi-day-3").html(tabTitles[2]);
+    $("#wi-day-4").html(tabTitles[3]);
+    $("#wi-day-5").html(tabTitles[4]);
+};

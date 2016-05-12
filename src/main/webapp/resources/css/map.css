@@ -157,3 +157,36 @@ a.navbar-brand img {
     -webkit-filter: blur(3px);
     filter: blur(3px);
 }
+
+#marker-info-content {
+    padding: 10px;
+    min-width: 100px;
+    text-align: center
+}
+
+#marker-info-heading {
+    border-bottom: 1px solid black;
+    font-weight: bold;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+#marker-info-button > button {
+    background-color: #02D46C;
+    color: white;
+    width: 120px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+
+#marker-info-button > button:hover {
+    background-color: #00DA6E;
+}
+
+#marker-info-button > button:active {
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+}
+
+#marker-info-lat-value, #marker-info-lng-value {
+    margin-bottom: 5px;
+    font-size: 14px;
+}

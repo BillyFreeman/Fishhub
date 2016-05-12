@@ -1,6 +1,7 @@
+//fish object
 var fish = function (context, e) {
 
-    this.ctx = context;
+    this.ctx = context; //ratio canvas context
     this.id = e.id;
     this.name = e.name;
     this.translit = e.translit;
@@ -70,11 +71,13 @@ var FishList = function () {
     };
 };
 
+//build a key string
 function getKey(date, time) {
     var str = "D" + date + "T" + time;
     return str.replace(/[-:]/g, "");
 }
 
+//return color from predefined list according the ratio value
 function getRatioColor(ratio) {
     switch (ratio) {
         case 1:
@@ -102,6 +105,7 @@ function getRatioColor(ratio) {
     }
 }
 
+//chose fish by id and redraw the DOM fishlist objects
 function selectFish(id) {
     var f = fishRatioList.getFish(id);
     f.drawValues();

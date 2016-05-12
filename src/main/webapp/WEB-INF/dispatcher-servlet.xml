@@ -111,4 +111,28 @@
             </props>
         </property>
     </bean>
+    
+    <bean id="simpleWindHelper" class="com.victor.fishhub.service.wind.WindDirectionHelperImpl" scope="singleton">
+        <property name="directonMap">
+            <map>
+                <entry key="North" value="0"/>
+                <entry key="North-NorthEast" value="22.5"/>
+                <entry key="NorthEast" value="45"/>
+                <entry key="East-NorthEast" value="67.5"/>
+                <entry key="East" value="90"/>
+                <entry key="East-SouthEast" value="112.5"/>
+                <entry key="SouthEast" value="135"/>
+                <entry key="South-SouthEast" value="157.5"/>
+                <entry key="South" value="180"/>
+                <entry key="South-SouthWest" value="202.5"/>
+                <entry key="SouthWest" value="225"/>
+                <entry key="West-SouthWest" value="247.5"/>
+                <entry key="West" value="270"/>
+                <entry key="West-NorthWest" value="292.5"/>
+                <entry key="NorthWest" value="315"/>
+                <entry key="North-NorthWest" value="337.5"/>
+            </map>
+        </property>
+    </bean>
+    
 </beans>

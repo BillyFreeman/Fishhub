@@ -39,7 +39,7 @@ var MoonPhaseList = function () {
 
 };
 
-
+//return moon phase picture by phase title
 var MoonPhaseArgs = function (title) {
     var imgPath = "http://localhost:8080/Fishhub/resources/images/moon/";
     this.title = title;

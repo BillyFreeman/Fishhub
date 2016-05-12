@@ -135,7 +135,7 @@
                                 <div class="wi-fish-select wi-content-center">
                                     <div class="wi-fish-list hidden" id="wi-fish-list"></div>
                                     <div class="wi-choose-fish fishes-toggle panel" id="wi-choose-fish">
-                                        <img src="images/fishes/karas.png"><span class="fish-name">Carasian</span><i class="fa fa-chevron-up"></i>
+                                        <img src="resources/images/fishes/karas.png"><span class="fish-name">Carasian</span><i class="fa fa-chevron-up"></i>
                                     </div>
                                     <div class="wi-total-ratio-block wi-mid-light panel">Total daily fishing ratio: <span
                                             class="wi-green wi-lg-white" id="wi-total-ratio">7</span>/10
