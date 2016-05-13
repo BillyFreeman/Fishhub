@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 
 @Component("fishRatio")
 class FishRatioImpl implements FishRatio {
-    
+
     private final static Pattern PATTERN = Pattern.compile("[:-]");
 
     @Override
@@ -36,11 +36,21 @@ class FishRatioImpl implements FishRatio {
         }
         return location;
     }
-    
-    private String createRatioKey(Date date, Time time){
+
+    private String createRatioKey(Date date, Time time) {
         String raw = "D" + date + "T" + time;
         Matcher matcher = PATTERN.matcher(raw);
         String key = matcher.replaceAll("");
         return key;
+    }
+
+    //dummy algorythm
+    private Integer getRatioValue(H3PeriodWeather h3, Fish fish) {
+        Integer ratio = null;
+        if (h3 != null && fish != null) {
+            ratio = (int) ((h3.getTemperature() / 25) * 5 + Math.random() * 5);
+            ratio = ratio > 10 ? 10 : ratio;
+        }
+        return ratio;
     }
 }
