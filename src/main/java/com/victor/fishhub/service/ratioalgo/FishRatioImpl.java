@@ -29,7 +29,8 @@ class FishRatioImpl implements FishRatio {
             for (DailyWeather dw : location.getWeatherList()) {
                 for (H3PeriodWeather h3 : dw.getH3WeatherList()) {
                     String key = createRatioKey(h3.getForecastDate(), h3.getForecastTime());
-                    ratioMap.put(key, 5);
+                    Integer ratio = getRatioValue(h3, f);
+                    ratioMap.put(key, ratio);
                 }
             }
             f.setActivityRatio(ratioMap);
