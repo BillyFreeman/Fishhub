@@ -35,7 +35,6 @@
         <property name="locations">
             <list>
                 <value>classpath:api.properties</value>
-                <value>classpath:weather.properties</value>
                 <value>classpath:database.properties</value>
             </list>
         </property>
