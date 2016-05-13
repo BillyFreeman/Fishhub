@@ -7,10 +7,6 @@ package com.victor.fishhub.service.weatherapi.rawentity.adapter;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
-/**
- *
- * @author Віктор
- */
 public class FloatToIntegerAdapter extends XmlAdapter<Float, Integer> {
 
     @Override

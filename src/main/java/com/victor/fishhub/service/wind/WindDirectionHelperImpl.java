@@ -14,7 +14,7 @@ class WindDirectionHelperImpl implements WindDirectionHelper {
     @Override
     public String getWindName(int direction) {
         for (Map.Entry<String, Double> e : directonMap.entrySet()) {
-            if (Math.abs(direction - e.getValue()) <= 11.25f) {
+            if (Math.abs(direction - e.getValue()) <= 11.25f) { //look for nearest predefined value to current wind direction
                 return e.getKey();
             }
         }

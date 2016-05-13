@@ -43,7 +43,7 @@ public class SheduledActionImpl implements SheduledAction {
 
     private Iterator<Location> locations;
     private SimpleDateFormat format;
-    private long requestCount;
+    private long requestCount; //current number of executed requests
 
     private final static int MAX_REQUEST_NUMBER = 9000; //max daily number of requests in free weather api subscription
 
@@ -55,13 +55,18 @@ public class SheduledActionImpl implements SheduledAction {
     @Override
     @Scheduled(cron = "0 45 0 * * *", zone = "Europe/Helsinki")
     public void preExecution() {
-        locations = service.getAllLocations().iterator();
+        locations = service.getAllLocations().iterator(); //initialize Locations iterator before start updating database
     }
 
+    /*
+    Itarates Location objects for updaring weather data in databese.
+    Method is executed once per second and 57 times per minute 
+    because of free subscription limitation (60 requests per  minute)
+    */
     @Override
     @Scheduled(cron = "0-57/1 * 1-3 * * *", zone = "Europe/Helsinki")
     public void executeApiRequest() {
-        if (locations != null && locations.hasNext()) {
+        if (locations != null && locations.hasNext()) { 
             Location nextLocation = locations.next();
             try {
                 URL url = new URL(apiHelper.getURLString(nextLocation.getLatitude(), nextLocation.getLongtitude()));
@@ -71,9 +76,12 @@ public class SheduledActionImpl implements SheduledAction {
                 Unmarshaller unmarshaller = context.createUnmarshaller();
 
                 WeatherData weatherData = (WeatherData) unmarshaller.unmarshal(connection.getInputStream());
+                
+                //response format is not appropriate for us, so we need to convert it in to our database entities
                 responseConverter.updateDailyWeatherList(weatherData, nextLocation.getWeatherList());
-                nextLocation.setActive(true);
-                service.updateLocation(nextLocation);
+                
+                nextLocation.setActive(true); //location is not active if it's new, or if some error occured during previous update
+                service.updateLocation(nextLocation); //save new Location data to database
             } catch (MalformedURLException ex) {
                 service.deactivateLocation(nextLocation.getId());
                 ex.printStackTrace();
@@ -87,13 +95,18 @@ public class SheduledActionImpl implements SheduledAction {
 
     @Override
     @Scheduled(cron = "0 15 3 * * *", zone = "Europe/Helsinki")
+    /*
+    If after database update completed for some reason we still have some not active locations
+    we are trying to update their until max number of requests will be reached
+    */
     public void postExecution() {
         List<Location> notActiveLocations;
         notActiveLocations = service.getNotActiveLocations();
+        
         if (notActiveLocations.isEmpty()) {
             return;
         }
-        locations = notActiveLocations.iterator();
+        locations = notActiveLocations.iterator(); 
         while (locations.hasNext()) {
             if (requestCount >= MAX_REQUEST_NUMBER) {
                 locations = null;
@@ -101,7 +114,7 @@ public class SheduledActionImpl implements SheduledAction {
             }
             executeApiRequest();
         }
-        postExecution();
+        postExecution(); //execute method recursively untill all locations are updated or max requests number is reached 
         locations = null;
         requestCount = 0;
     }

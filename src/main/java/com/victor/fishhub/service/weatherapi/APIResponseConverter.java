@@ -11,10 +11,7 @@ import com.victor.fishhub.service.weatherapi.exception.WeatherDataFormatExceptio
 import com.victor.fishhub.service.weatherapi.rawentity.WeatherData;
 import java.util.List;
 
-/**
- *
- * @author Віктор
- */
+
 public interface APIResponseConverter {
 
     List<DailyWeather> updateDailyWeatherList(WeatherData data, List<DailyWeather> weatherList) throws WeatherDataFormatException;

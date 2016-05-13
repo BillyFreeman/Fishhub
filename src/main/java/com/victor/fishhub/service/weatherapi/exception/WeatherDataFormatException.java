@@ -5,7 +5,7 @@
  */
 package com.victor.fishhub.service.weatherapi.exception;
 
-
+//exception occurs when api request returns not complete data
 public class WeatherDataFormatException extends Exception {
     
     private final static String H3_MESSAGE = "API response has wrong number of 3 hour periods";
