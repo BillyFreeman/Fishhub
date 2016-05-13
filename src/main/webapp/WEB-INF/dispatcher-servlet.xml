@@ -113,7 +113,7 @@
     </bean>
     
     <bean id="simpleWindHelper" class="com.victor.fishhub.service.wind.WindDirectionHelperImpl" scope="singleton">
-        <property name="directonMap">
+        <constructor-arg>
             <map>
                 <entry key="North" value="0"/>
                 <entry key="North-NorthEast" value="22.5"/>
@@ -132,6 +132,31 @@
                 <entry key="NorthWest" value="315"/>
                 <entry key="North-NorthWest" value="337.5"/>
             </map>
-        </property>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="responseConverter" class="com.victor.fishhub.service.weatherapi.APIResponseConverterImpl">
+        <constructor-arg>
+            <map>
+                <entry key="01d" value="clear sky" />
+                <entry key="02d" value="few clouds " />
+                <entry key="03d" value="scattered clouds" />
+                <entry key="04d" value="broken clouds" />
+                <entry key="09d" value="shower rain" />
+                <entry key="10d" value="rain" />
+                <entry key="11d" value="thunderstorm" />
+                <entry key="13d" value="snow" />
+                <entry key="50d" value="mist" />
+                <entry key="01n" value="clear sky" />
+                <entry key="02n" value="few clouds " />
+                <entry key="03n" value="scattered clouds" />
+                <entry key="04n" value="broken clouds" />
+                <entry key="09n" value="shower rain" />
+                <entry key="10n" value="rain" />
+                <entry key="11n" value="thunderstorm" />
+                <entry key="13n" value="snow" />
+                <entry key="50n" value="mist" />
+            </map>
+        </constructor-arg>
     </bean>
 </beans>

@@ -11,6 +11,10 @@ class WindDirectionHelperImpl implements WindDirectionHelper {
     public WindDirectionHelperImpl() {
     }
 
+    public WindDirectionHelperImpl(Map<String, Double> directonMap) {
+        this.directonMap = directonMap;
+    }
+
     @Override
     public String getWindName(int direction) {
         for (Map.Entry<String, Double> e : directonMap.entrySet()) {
@@ -19,9 +23,5 @@ class WindDirectionHelperImpl implements WindDirectionHelper {
             }
         }
         return "North";
-    }
-
-    public void setDirectonMap(Map<String, Double> directonMap) {
-        this.directonMap = directonMap;
     }
 }

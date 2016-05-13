@@ -77,7 +77,7 @@ public class SheduledActionImpl implements SheduledAction {
 
                 WeatherData weatherData = (WeatherData) unmarshaller.unmarshal(connection.getInputStream());
                 
-                //response format is not appropriate for us, so we need to convert it in to our database entities
+                //response format is not suitable, so we need to convert it in to our database entities
                 responseConverter.updateDailyWeatherList(weatherData, nextLocation.getWeatherList());
                 
                 nextLocation.setActive(true); //location is not active if it's new, or if some error occured during previous update
