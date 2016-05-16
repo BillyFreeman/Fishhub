@@ -29,16 +29,8 @@
     
     <context:annotation-config />
     
-    <context:property-placeholder properties-ref="allProps" />
-    
-    <bean id="allProps" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-        <property name="locations">
-            <list>
-                <value>classpath:api.properties</value>
-                <value>classpath:database.properties</value>
-            </list>
-        </property>
-    </bean>
+    <context:property-placeholder location="classpath:api.properties" order="1" ignore-unresolvable="true" />
+    <context:property-placeholder location="classpath:database.properties" order="2"/>
     
     <bean id="cnManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
         <property name="favorPathExtension" value="true" />
