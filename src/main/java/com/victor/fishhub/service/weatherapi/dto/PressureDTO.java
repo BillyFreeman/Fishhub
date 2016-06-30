@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.victor.fishhub.service.weatherapi.rawentity;
+package com.victor.fishhub.service.weatherapi.dto;
 
-import com.victor.fishhub.service.weatherapi.rawentity.adapter.FloatToIntegerAdapter;
+import com.victor.fishhub.service.weatherapi.dto.adapter.FloatToIntegerAdapter;
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlRootElement(name = "pressure")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Pressure implements Serializable {
+public class PressureDTO implements Serializable {
 
     @XmlAttribute(name = "unit")
     private String unit;
@@ -23,7 +23,7 @@ public class Pressure implements Serializable {
     @XmlJavaTypeAdapter(FloatToIntegerAdapter.class)
     private Integer value;
 
-    public Pressure() {
+    public PressureDTO() {
     }
 
     public String getUnit() {

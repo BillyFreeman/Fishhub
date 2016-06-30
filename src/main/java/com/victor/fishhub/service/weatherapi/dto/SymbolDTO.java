@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.victor.fishhub.service.weatherapi.rawentity;
+package com.victor.fishhub.service.weatherapi.dto;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "symbol")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Symbol implements Serializable {
+public class SymbolDTO implements Serializable {
     
     @XmlAttribute(name = "number")
     private int number;
@@ -22,7 +22,7 @@ public class Symbol implements Serializable {
     @XmlAttribute(name = "var")
     private String var;
     
-    public Symbol(){
+    public SymbolDTO(){
     }
 
     public int getNumber() {

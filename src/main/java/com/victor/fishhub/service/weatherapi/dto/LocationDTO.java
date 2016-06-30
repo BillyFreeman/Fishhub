@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.victor.fishhub.service.weatherapi.rawentity;
+package com.victor.fishhub.service.weatherapi.dto;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,7 +15,7 @@ import org.w3c.dom.Element;
 
 @XmlRootElement(name = "location")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Location implements Serializable {
+public class LocationDTO implements Serializable {
 
     private String name;
     private String country;
@@ -24,7 +24,7 @@ public class Location implements Serializable {
     private List<Element> nodes;
 
 
-    public Location() {
+    public LocationDTO() {
 
     }
 

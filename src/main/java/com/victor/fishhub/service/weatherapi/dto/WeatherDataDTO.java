@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.victor.fishhub.service.weatherapi.rawentity;
+package com.victor.fishhub.service.weatherapi.dto;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,22 +16,22 @@ import org.w3c.dom.Element;
 
 @XmlRootElement(name = "weatherdata")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class WeatherData implements Serializable {
+public class WeatherDataDTO implements Serializable {
     
-    private Location location;
+    private LocationDTO location;
     @XmlElement(name = "forecast")
-    private Forecast forecast;
+    private ForecastDTO forecast;
     @XmlAnyElement
     private List<Element> nodes;
 
-    public WeatherData() {
+    public WeatherDataDTO() {
     }
 
-    public Location getLocation() {
+    public LocationDTO getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(LocationDTO location) {
         this.location = location;
     }
 
@@ -43,11 +43,11 @@ public class WeatherData implements Serializable {
         this.nodes = nodes;
     }
 
-    public Forecast getForecast() {
+    public ForecastDTO getForecast() {
         return forecast;
     }
 
-    public void setForecast(Forecast forecast) {
+    public void setForecast(ForecastDTO forecast) {
         this.forecast = forecast;
     }
 }

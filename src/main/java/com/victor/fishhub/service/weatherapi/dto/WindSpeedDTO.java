@@ -3,34 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.victor.fishhub.service.weatherapi.rawentity;
+package com.victor.fishhub.service.weatherapi.dto;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyAttribute;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.w3c.dom.Element;
 
-@XmlRootElement(name = "clouds")
+@XmlRootElement(name = "windSpeed")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Clouds implements Serializable {
+public class WindSpeedDTO implements Serializable {
 
-    @XmlAttribute(name = "value")
-    private String value;
+    @XmlAttribute(name = "mps")
+    private double speed;
     @XmlAnyAttribute
     private Map<String, Object> nodes;
 
-    public Clouds() {
+    public WindSpeedDTO() {
     }
 
-    public String getValue() {
-        return value;
+    public double getSpeed() {
+        return speed;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setSpeed(double speed) {
+        this.speed = speed;
     }
 
     public Map<String, Object> getNodes() {
@@ -40,4 +42,5 @@ public class Clouds implements Serializable {
     public void setNodes(Map<String, Object> nodes) {
         this.nodes = nodes;
     }
+
 }

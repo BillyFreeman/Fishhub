@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.victor.fishhub.service.weatherapi.rawentity;
+package com.victor.fishhub.service.weatherapi.dto;
 
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,19 +13,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "forecast")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Forecast {
+public class ForecastDTO {
 
     @XmlElement(name = "time")
-    List<Time> time;
+    List<TimeDTO> time;
 
-    public Forecast() {
+    public ForecastDTO() {
     }
 
-    public List<Time> getTime() {
+    public List<TimeDTO> getTime() {
         return time;
     }
 
-    public void setTime(List<Time> time) {
+    public void setTime(List<TimeDTO> time) {
         this.time = time;
     }
 

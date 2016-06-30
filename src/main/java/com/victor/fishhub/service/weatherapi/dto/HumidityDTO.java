@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.victor.fishhub.service.weatherapi.rawentity;
+package com.victor.fishhub.service.weatherapi.dto;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,14 +13,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "humidity")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Humidity implements Serializable {
+public class HumidityDTO implements Serializable {
 
     @XmlAttribute(name = "unit")
     private String unit;
     @XmlAttribute(name = "value")
     private int value;
 
-    public Humidity() {
+    public HumidityDTO() {
     }
 
     public String getUnit() {

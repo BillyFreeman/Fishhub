@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.victor.fishhub.service.weatherapi.rawentity.adapter;
+package com.victor.fishhub.service.weatherapi.dto.adapter;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 

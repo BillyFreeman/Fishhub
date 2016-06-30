@@ -10,8 +10,8 @@ import com.victor.fishhub.dao.entity.H3PeriodWeather;
 import com.victor.fishhub.service.moonphase.MoonPhase;
 import com.victor.fishhub.service.moonphase.MoonPhaseHelper;
 import com.victor.fishhub.service.weatherapi.exception.WeatherDataFormatException;
-import com.victor.fishhub.service.weatherapi.rawentity.Time;
-import com.victor.fishhub.service.weatherapi.rawentity.WeatherData;
+import com.victor.fishhub.service.weatherapi.dto.TimeDTO;
+import com.victor.fishhub.service.weatherapi.dto.WeatherDataDTO;
 import com.victor.fishhub.service.wind.WindDirectionHelper;
 import java.sql.Date;
 import java.text.ParseException;
@@ -56,7 +56,7 @@ class APIResponseConverterImpl implements APIResponseConverter {
     }
 
     @Override
-    public List<DailyWeather> updateDailyWeatherList(WeatherData data, List<DailyWeather> weatherList) throws WeatherDataFormatException {
+    public List<DailyWeather> updateDailyWeatherList(WeatherDataDTO data, List<DailyWeather> weatherList) throws WeatherDataFormatException {
         List<H3PeriodWeather> h3List = convertToH3PeriodWeatherList(data);
 
         if (h3List.size() != 40) { //if response don't contain complete data
@@ -72,9 +72,9 @@ class APIResponseConverterImpl implements APIResponseConverter {
 
     //converts weather api resopnse to entity objects
     @Override
-    public List<H3PeriodWeather> convertToH3PeriodWeatherList(WeatherData data) {
+    public List<H3PeriodWeather> convertToH3PeriodWeatherList(WeatherDataDTO data) {
         List<H3PeriodWeather> h3List = new ArrayList<>();
-        for (Time t : data.getForecast().getTime()) {
+        for (TimeDTO t : data.getForecast().getTime()) {
             H3PeriodWeather hpw = new H3PeriodWeather();
 
             hpw.setForecastDate(getForecastDate(t.getTo()));

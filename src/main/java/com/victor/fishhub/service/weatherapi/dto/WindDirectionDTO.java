@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.victor.fishhub.service.weatherapi.rawentity;
+package com.victor.fishhub.service.weatherapi.dto;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "windDirection")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class WindDirection implements Serializable {
+public class WindDirectionDTO implements Serializable {
 
     @XmlAttribute(name = "deg")
     private double degree;
@@ -22,7 +22,7 @@ public class WindDirection implements Serializable {
     @XmlAttribute(name = "name")
     private String name;
 
-    public WindDirection() {
+    public WindDirectionDTO() {
     }
 
     public double getDegree() {

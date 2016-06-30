@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.victor.fishhub.service.weatherapi.rawentity;
+package com.victor.fishhub.service.weatherapi.dto;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,25 +16,25 @@ import org.w3c.dom.Element;
 
 @XmlRootElement(name = "time")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Time implements Serializable {
+public class TimeDTO implements Serializable {
 
     @XmlAttribute(name = "from")
     private String from;
     @XmlAttribute(name = "to")
     private String to;
 
-    private Symbol symbol;
-    private WindDirection windDirection;
-    private WindSpeed windSpeed;
-    private Temperature temperature;
-    private Pressure pressure;
-    private Humidity humidity;
-    private Clouds clouds;
+    private SymbolDTO symbol;
+    private WindDirectionDTO windDirection;
+    private WindSpeedDTO windSpeed;
+    private TemperatureDTO temperature;
+    private PressureDTO pressure;
+    private HumidityDTO humidity;
+    private CloudsDTO clouds;
 
     @XmlAnyElement
     private List<Element> nodes;
 
-    public Time() {
+    public TimeDTO() {
     }
 
     public String getFrom() {
@@ -53,59 +53,59 @@ public class Time implements Serializable {
         this.to = to;
     }
 
-    public Symbol getSymbol() {
+    public SymbolDTO getSymbol() {
         return symbol;
     }
 
-    public void setSymbol(Symbol symbol) {
+    public void setSymbol(SymbolDTO symbol) {
         this.symbol = symbol;
     }
 
-    public WindDirection getWindDirrection() {
+    public WindDirectionDTO getWindDirrection() {
         return windDirection;
     }
 
-    public void setWindDirrection(WindDirection windDirrection) {
+    public void setWindDirrection(WindDirectionDTO windDirrection) {
         this.windDirection = windDirrection;
     }
 
-    public WindSpeed getWindSpeed() {
+    public WindSpeedDTO getWindSpeed() {
         return windSpeed;
     }
 
-    public void setWindSpeed(WindSpeed windSpeed) {
+    public void setWindSpeed(WindSpeedDTO windSpeed) {
         this.windSpeed = windSpeed;
     }
 
-    public Temperature getTemperature() {
+    public TemperatureDTO getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(Temperature temperature) {
+    public void setTemperature(TemperatureDTO temperature) {
         this.temperature = temperature;
     }
 
-    public Pressure getPressure() {
+    public PressureDTO getPressure() {
         return pressure;
     }
 
-    public void setPressure(Pressure pressure) {
+    public void setPressure(PressureDTO pressure) {
         this.pressure = pressure;
     }
 
-    public Humidity getHumidity() {
+    public HumidityDTO getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(Humidity humidity) {
+    public void setHumidity(HumidityDTO humidity) {
         this.humidity = humidity;
     }
 
-    public Clouds getClouds() {
+    public CloudsDTO getClouds() {
         return clouds;
     }
 
-    public void setClouds(Clouds clouds) {
+    public void setClouds(CloudsDTO clouds) {
         this.clouds = clouds;
     }
 
