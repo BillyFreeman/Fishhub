@@ -1,6 +1,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,25 +22,29 @@
                             <img class="logo" src="resources/images/fh_paper_logo.png">
                         </div>
                         <div class="manual-auth-block">
-                            <form method="post" action="login.html">
+                            <form:form method="post" action="register" modelAttribute="regDTO">
                                 <div class="add-on">
                                     <i class="fa fa-user"></i>
-                                    <input type="text" class="input-lg" placeholder="User name">
+                                    <form:input path="username" type="text" class="input-lg" placeholder="User name" />
+                                    <form:errors path="username" element="div" class="fh-error" />
                                 </div>
                                 <div class="add-on">
                                     <i class="fa fa-envelope-o"></i>
-                                    <input type="email" class="input-lg" placeholder="Email">
+                                    <form:input path="email" type="email" class="input-lg" placeholder="Email" />
+                                    <form:errors path="email" element="div" class="fh-error"/>
                                 </div>
                                 <div class="add-on">
                                     <i class="fa fa-lock"></i>
-                                    <input type="password" class="input-lg" placeholder="User password">
+                                    <form:input path="password" type="password" class="input-lg" placeholder="User password" />
+                                    <form:errors path="password" element="div" class="fh-error"/>
                                 </div>
                                 <div class="add-on">
                                     <i class="fa fa-lock"></i>
-                                    <input type="password" class="input-lg" placeholder="Confirm password">
+                                    <form:input path="confirmPassword" type="password" class="input-lg" placeholder="Confirm password" />
+                                    <form:errors path="confirmPassword" element="div" class="fh-error"/>
                                 </div>
                                 <input type="submit" class="btn btn-lg login-button" value="SIGN IN">
-                            </form>
+                            </form:form>
                         </div>
                     </div>
                     <div class="panel-footer">
